@@ -1,6 +1,6 @@
 
 import './App.css'
-import { Start } from './start'
+import { Start } from './pages/Start/start'
 
 function App() {
 
