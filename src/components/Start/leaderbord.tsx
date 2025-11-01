@@ -25,7 +25,7 @@ export const Leaderboard = ({ leaderboard, mods }: { leaderboard: LeaderboardEnt
         <div className="leaderboard-container">
             <div className="leader-board">
                 <div className="leader-board-header">
-                    <h2>Skor Tablosu</h2>
+                    <h2>Lider Tablosu</h2>
                     <div className="game-mode-container">
                         <button
                             className="game-mode-button"
@@ -51,27 +51,42 @@ export const Leaderboard = ({ leaderboard, mods }: { leaderboard: LeaderboardEnt
                     </div>
                 </div>
 
-                <table className="leaderboard-table">
-                    <thead>
-                        <tr>
-                            <th>Sıra</th>
-                            <th>İsim</th>
-                            <th>Skor</th>
-                            <th>Oyun Modu</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredLeaderboard.map((e) => (
-                            <tr key={e.rank} className={`rank-${e.rank}`}>
-                                <td>{e.rank}</td>
-                                <td>{e.name}</td>
-                                <td>{e.score}</td>
-                                <td>{mods.find((mod) => mod.id === selectedMod)?.name}</td>
+                {/*  Herhangi bir oyuncu listede yoksa  */}
+                {filteredLeaderboard.length === 0 ? (
+                    <div className="no-player-text">
+                        <p >
+                            🤖 Web dünyasında robotlar hüküm sürüyor! 🤖
+                        </p>
+                        <p> İnsanların çağı yeniden yükselecek...</p>
+                        <p>💊💊 Unutma sana vaat edilen tek şey gerçek! Fazlası değil... 💊💊</p>
+                    </div>
 
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                ) :
+                    // Lider Tablosunda oyuncu ekli ise 
+                    (
+                        <table className="leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Sıra</th>
+                                    <th>İsim</th>
+                                    <th>Lider</th>
+                                    <th>Oyun Modu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {filteredLeaderboard.slice(0, 5).map((e) => (
+                                    <tr key={e.rank} className={`rank-${e.rank}`}>
+                                        <td>{e.rank}</td>
+                                        <td>{e.name}</td>
+                                        <td>{e.score}</td>
+                                        <td>
+                                            {mods.find((mod) => mod.id === selectedMod)?.name}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
             </div>
         </div>
     );
