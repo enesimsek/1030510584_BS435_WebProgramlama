@@ -1,11 +1,13 @@
-/* Genel görünüm */
 body {
     margin: 0;
     padding: 0;
-    background-color: #0d1117;
-    color: #ffffff;
     font-family: "Poppins", sans-serif;
+    background: #220d38;
+    background: linear-gradient(180deg, rgba(34, 13, 56, 1) 0%, rgba(13, 17, 23, 1) 24%, rgba(13, 17, 23, 1) 100%);
+    min-height: 100vh;
 }
+
+
 
 /* Başlangıç butonları */
 .start-page-button-container {
@@ -15,7 +17,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    min-height: 80vh;
+    min-height: 88vh;
 }
 
 .start-page-buttons {
