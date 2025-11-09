@@ -1,8 +1,8 @@
 import "./home.css";
-import { Leaderboard } from "../../components/Start/leaderbord";
-import { Footer } from "../../components/footer";
+import { Leaderboard } from "../../../components/Start/leaderbord";
+import { Footer } from "../../../components/footer";
 import { useNavigate } from "react-router-dom";
-import { PATHS } from "../../routes/paths";
+import { PATHS } from "../../../routes/paths";
 
 
 
@@ -40,7 +40,7 @@ export const Home = () => {
             {/* Butonlar */}
             <div className="start-page-button-container">
                 <button className="start-page-buttons" onClick={() => navigate(PATHS.SELECT_MODE.path)} >BAŞLA</button>
-                <button className="start-page-buttons">AYARLAR</button>
+                <button className="start-page-buttons" onClick={() => navigate(PATHS.SETTINGS.path)}>AYARLAR</button>
                 <button className="start-page-buttons">EMEĞİ GEÇENLER</button>
             </div>
             {/* Lider Tablosu */}

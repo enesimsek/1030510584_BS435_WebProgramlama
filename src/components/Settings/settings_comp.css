@@ -1,0 +1,132 @@
+.settings-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    color: #f1c40f;
+    position: relative;
+}
+
+/* Ana panel */
+.settings-panel {
+    width: 600px;
+    background: linear-gradient(180deg, rgba(34, 13, 56, 1) 0%, rgba(13, 17, 23, 1) 24%, rgba(13, 17, 23, 1) 100%);
+    border: 2px solid #f1c40f;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.settings-title {
+    text-align: center;
+    font-size: 28px;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #f1c40f;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.settings-section {
+    margin-bottom: 24px;
+}
+
+.label {
+    display: block;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 2px solid #f1c40f;
+    color: #f1c40f;
+    font-size: 16px;
+    font-family: "Cinzel", serif;
+    outline: none;
+}
+
+.input:focus {
+    box-shadow: 0 0 10px #f1c40f;
+}
+
+.slider {
+    width: 100%;
+    accent-color: #f1c40f;
+    cursor: pointer;
+}
+
+.lang-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.lang-btn {
+    flex: 1;
+    border: 2px solid #f1c40f;
+    background: transparent;
+    color: #f2d17b;
+    padding: 8px 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.lang-btn:hover {
+    background-color: #f1c40f;
+    color: #2e1e0b;
+}
+
+.save-btn {
+    width: 100%;
+    border: 2px solid #f1c40f;
+    background: transparent;
+    color: #f1c40f;
+    padding: 12px 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.save-btn:hover {
+    background-color: #f1c40f;
+    color: #2e1e0b;
+    box-shadow: 0 0 20px #f1c40f;
+}
+
+/* Geri ve Çarpı Butonları */
+.nav-btn {
+    position: absolute;
+    background: rgba(20, 12, 5, 0.7);
+    border: 2px solid #f1c40f;
+    color: #f1c40f;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    padding: 8px 14px;
+}
+
+.nav-btn:hover {
+    background-color: #f1c40f;
+    color: #2e1e0b;
+    box-shadow: 0 0 12px #f1c40f;
+}
+
+.back-btn {
+    top: 20px;
+    left: 20px;
+}
+
+.close-btn {
+    top: 20px;
+    right: 20px;
+    font-size: 22px;
+    line-height: 16px;
+}
