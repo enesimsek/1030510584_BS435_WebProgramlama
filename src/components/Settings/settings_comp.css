@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap');
+
 .settings-wrapper {
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Poppins", sans-serif;
+    font-family: "Coming Soon", cursive;
     color: #f1c40f;
     position: relative;
 }
@@ -46,7 +48,7 @@
     border: 2px solid #f1c40f;
     color: #f1c40f;
     font-size: 16px;
-    font-family: "Cinzel", serif;
+    font-family: "Coming Soon", cursive;
     outline: none;
 }
 
@@ -61,11 +63,14 @@
 }
 
 .lang-buttons {
+
     display: flex;
     gap: 10px;
 }
 
 .lang-btn {
+    font-family: "Coming Soon", cursive;
+
     flex: 1;
     border: 2px solid #f1c40f;
     background: transparent;
@@ -102,6 +107,7 @@
 
 /* Geri ve Çarpı Butonları */
 .nav-btn {
+    font-family: "Coming Soon", cursive;
     position: absolute;
     background: rgba(20, 12, 5, 0.7);
     border: 2px solid #f1c40f;

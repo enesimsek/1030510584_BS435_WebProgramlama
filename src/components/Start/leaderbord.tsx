@@ -60,7 +60,6 @@ export const Leaderboard = ({ leaderboard, mods }: { leaderboard: LeaderboardEnt
                         <p> İnsanların çağı yeniden yükselecek...</p>
                         <p>💊💊 Unutma sana vaat edilen tek şey gerçek! Fazlası değil... 💊💊</p>
                     </div>
-
                 ) :
                     // Lider Tablosunda oyuncu ekli ise 
                     (
@@ -69,8 +68,7 @@ export const Leaderboard = ({ leaderboard, mods }: { leaderboard: LeaderboardEnt
                                 <tr>
                                     <th>Sıra</th>
                                     <th>İsim</th>
-                                    <th>Lider</th>
-                                    <th>Oyun Modu</th>
+                                    <th>Skor</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,9 +77,6 @@ export const Leaderboard = ({ leaderboard, mods }: { leaderboard: LeaderboardEnt
                                         <td>{e.rank}</td>
                                         <td>{e.name}</td>
                                         <td>{e.score}</td>
-                                        <td>
-                                            {mods.find((mod) => mod.id === selectedMod)?.name}
-                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
