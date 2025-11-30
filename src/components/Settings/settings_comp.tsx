@@ -1,7 +1,6 @@
 
 import { useNavigate } from "react-router-dom";
 import "./settings_comp.css"
-import { PATHS } from "../../routes/paths";
 import { useEffect, useState } from "react";
 import { Sounds } from "../Sound Player/sound_player";
 
@@ -31,21 +30,28 @@ export const SettingsComp = ({ callerPage, onClose }: SettingsCompProps) => {
 
     return (
         <div className="settings-wrapper">
-            {/* oyuna başlamadan önce ayarlar sayfası açılırsa  */}
-            {callerPage === "settings" && (
-                <button className="nav-btn back-btn" onClick={() => {
-                    navigate(PATHS.HOME.path);
-                }}>
-                    ← GERİ
-                </button>
-            )}
 
-            {/* oyun oynanması sırasında ayalar açılırsa  */}
+            {/* Oyun içinden geldiyse →  kapat tuşu gözükecek */}
             {callerPage === "game" && (
-                <button className="nav-btn close-btn" onClick={onClose}>
+                <button className="nav-btn close-btn" onClick={async () => {
+                    await Sounds.clickAsync();
+                    onClose
+                }}>
                     ✕
                 </button>
             )}
+
+            {/* Oyun dışından geldiyse → Geri  tuşu */}
+            {callerPage !== "game" && (
+                <button className="nav-btn back-btn" onClick={async () => {
+                    await Sounds.clickAsync();
+                    navigate(callerPage)
+                }
+                }>
+                    ← Geri
+                </button>
+            )
+            }
 
             <div className="settings-panel">
                 <h1 className="settings-title">AYARLAR</h1>
@@ -95,6 +101,6 @@ export const SettingsComp = ({ callerPage, onClose }: SettingsCompProps) => {
                     />
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

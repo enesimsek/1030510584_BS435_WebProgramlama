@@ -51,12 +51,15 @@ export const HomePage = () => {
                 <button className="start-page-buttons" onClick={async () => {
                     // müzik oynatılana kadar bekler
                     await Sounds.clickAsync();
+                    Sounds.bgStart();
                     navigate(PATHS.SELECT_MODE.path);
                 }} >BAŞLA</button>
                 <button className="start-page-buttons" onClick={async () => {
                     await Sounds.clickAsync();
                     setTimeout(() => {
-                        navigate(PATHS.SETTINGS.path)
+                        navigate(PATHS.SETTINGS.path, {
+                            state: { callerPage: PATHS.HOME.path }
+                        });
                     }, 150)
                 }}>AYARLAR</button>
                 <button className="start-page-buttons" onClick={async () => {
