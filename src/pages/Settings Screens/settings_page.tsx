@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
-import { SettingsComp } from "../../../components/Settings/settings_comp";
-import { PATHS } from "../../../routes/paths";
+import { SettingsComp } from "../../components/Settings/settings_comp";
+import { PATHS } from "../../routes/paths";
 
 export const SettingsPage = () => {
     const location = useLocation();

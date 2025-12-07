@@ -15,4 +15,28 @@ export const PATHS = {
         path: "/emegi-gecenler",
         name: "Emeği Geçenler",
     },
+    CLASSIC_EASY: {
+        path: "/oyun-klasik-kolay",
+        name: "Klasik Kolay",
+    },
+    CLASSIC_NORMAL: {
+        path: "/oyun-klasik-normal",
+        name: "Klasik Normal",
+    },
+    CLASSIC_HARD: {
+        path: "/oyun-klasik-zor",
+        name: "Klasik Zor",
+    },
+    TIME: {
+        path: "/oyun-zamana-karsi",
+        name: "Zamana Karşı",
+    },
+    NO_MISTAKE: {
+        path: "/oyun-hata-yok",
+        name: "Hata Yok",
+    },
+    I_AM_NOT_A_ROBOT: {
+        path: "/oyun-ben-robot-degilim",
+        name: "Ben Robot Değilim",
+    }
 };

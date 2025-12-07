@@ -22,13 +22,12 @@ export const SelectModePage = ({ username, setUserName }: SelectModePageProps) =
     const navigate = useNavigate();
 
     const [selectedMode, setSelectedMode] = useState(1);
-    const [isHoveringPlay, setIsHoveringPlay] = useState(false);
 
 
     const mods = [
-        { id: 1, name: "Klasik Kolay Mod", img: klasik_kolay },
-        { id: 2, name: "Klasik Normal Mod", img: klasik_normal },
-        { id: 3, name: "Klasik Zor Mod", img: klasik_zor },
+        { id: 1, name: "Klasik Kolay", img: klasik_kolay },
+        { id: 2, name: "Klasik Normal", img: klasik_normal },
+        { id: 3, name: "Klasik Zor", img: klasik_zor },
         { id: 4, name: "Zamana Karşı", img: zaman_karsi },
         { id: 5, name: "Hata Yok", img: hata_yok },
         { id: 6, name: "Ben Robot Değilim", img: ben_robot_degilim },
@@ -52,6 +51,15 @@ export const SelectModePage = ({ username, setUserName }: SelectModePageProps) =
 
     const goNextMode = () => {
         setSelectedMode((prev) => (prev === mods.length ? 1 : prev + 1));
+    };
+
+    const gamePaths: Record<number, string> = {
+        1: PATHS.CLASSIC_EASY.path,
+        2: PATHS.CLASSIC_NORMAL.path,
+        3: PATHS.CLASSIC_HARD.path,
+        4: PATHS.TIME.path,
+        5: PATHS.NO_MISTAKE.path,
+        6: PATHS.I_AM_NOT_A_ROBOT.path,
     };
 
     return (
@@ -138,9 +146,9 @@ export const SelectModePage = ({ username, setUserName }: SelectModePageProps) =
                     className="play-button"
                     onClick={async () => {
                         await Sounds.clickAsync();
-                        /*navigate(PATHS.GAME.path, {
+                        navigate(gamePaths[selectedMode], {
                             state: { mode: selectedMode, username }
-                        });*/
+                        });
                     }}
                 >
                     Oyna

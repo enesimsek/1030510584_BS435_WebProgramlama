@@ -35,7 +35,7 @@ export const SettingsComp = ({ callerPage, onClose }: SettingsCompProps) => {
             {callerPage === "game" && (
                 <button className="nav-btn close-btn" onClick={async () => {
                     await Sounds.clickAsync();
-                    onClose
+                    onClose?.();
                 }}>
                     ✕
                 </button>
