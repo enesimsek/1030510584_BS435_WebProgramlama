@@ -1,22 +1,19 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { Sounds } from '../../components/Sound Player/sound_player';
 import { SettingsComp } from '../../components/Settings/settings_comp';
 import { ImageCard } from '../../components/ImageCard/ImageCard';
-import { AI_IMAGES } from '../../constants/aiImages';
+import { getGameImages } from '../../services/getImage_service';
+import type { GameImage } from '../../services/getImage_service';
+import { saveScore } from '../../services/leaderboard_service';
+import { PATHS } from '../../routes/paths';
 import './classicEasyGameScreen.css';
 
-type ClassicEasyGameScreenProps = { username: string; };
+type ClassicEasyGameScreenProps = { userName: string; };
 
-
-interface GameImage {
-    id: string;
-    url: string;
-    isAI: boolean;
-}
-
-export const ClassicEasyGameScreen = ({ username }: ClassicEasyGameScreenProps) => {
-
+export const ClassicEasyGameScreen = ({ userName }: ClassicEasyGameScreenProps) => {
+    const navigate = useNavigate();
 
     const [images, setImages] = useState<GameImage[]>([]);
     const [lives, setLives] = useState(3);
@@ -25,44 +22,31 @@ export const ClassicEasyGameScreen = ({ username }: ClassicEasyGameScreenProps) 
     const [showSettings, setShowSettings] = useState(false);
     const [showResult, setShowResult] = useState(false);
     const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
-
-    // Random AI görsel seç
-    const getRandomAIImage = () => {
-        const randomIndex = Math.floor(Math.random() * AI_IMAGES.length);
-        return `/src/assets/aı_images/${AI_IMAGES[randomIndex]}`;
-    };
-
-    // Random gerçek görsel seç (Picsum)
-    const getRealImage = () => {
-        const randomId = Math.floor(Math.random() * 1000);
-        return `https://picsum.photos/400/300?random=${randomId}`;
-    };
+    const [imagesLoading, setImagesLoading] = useState(true);
+    const [loadedCount, setLoadedCount] = useState(0);
 
     // Yeni tur başlat
     const startNewRound = () => {
-        const newImages: GameImage[] = [];
-
-        // 2 gerçek görsel ekle
-        for (let i = 0; i < 5; i++) {
-            newImages.push({
-                id: `real-${i}`,
-                url: getRealImage(),
-                isAI: false
-            });
-        }
-
-        // 1 AI görsel ekle
-        newImages.push({
-            id: 'ai-1',
-            url: getRandomAIImage(),
-            isAI: true
-        });
-
-        // Görselleri karıştır
-        const shuffled = newImages.sort(() => Math.random() - 0.5);
-        setImages(shuffled);
+        // 5 gerçek görsel + 1 AI görsel al ve karıştır
+        const newImages = getGameImages(5, 1);
+        setImages(newImages);
         setShowResult(false);
         setSelectedImageId(null);
+        setImagesLoading(true);
+        setLoadedCount(0);
+    };
+
+    // Görsel yüklendiğinde çağrılır
+    const handleImageLoad = () => {
+        setLoadedCount(prev => {
+            const newCount = prev + 1;
+            // 6 görsel yüklendiğinde (5 gerçek + 1 AI), tüm görselleri göster
+            if (newCount === 6) {
+                console.log('Tüm görseller yüklendi! Shimmer kapatılıyor...');
+                setImagesLoading(false);
+            }
+            return newCount;
+        });
     };
 
     // Kart seçimi
@@ -101,18 +85,25 @@ export const ClassicEasyGameScreen = ({ username }: ClassicEasyGameScreenProps) 
 
     // Oyun bitti ekranı
     if (gameOver) {
+        // Skoru kaydet ve lose screen'e yönlendir
+        const gameMode = 1; // Klasik Kolay
+        saveScore(userName, score, gameMode);
+
+        setTimeout(() => {
+            navigate(PATHS.LOSE_SCREEN.path, {
+                state: {
+                    userName,
+                    score,
+                    gameMode
+                }
+            });
+        }, 1500);
+
         return (
             <div className="game-over-screen">
                 <h1>KAYBETTIN!</h1>
                 <p>Skorun: {score}</p>
-                <button onClick={() => {
-                    setLives(3);
-                    setScore(0);
-                    setGameOver(false);
-                    startNewRound();
-                }}>
-                    Tekrar Oyna
-                </button>
+                <p>Yönlendiriliyorsunuz...</p>
             </div>
         );
     }
@@ -123,11 +114,28 @@ export const ClassicEasyGameScreen = ({ username }: ClassicEasyGameScreenProps) 
             {showSettings && (
                 <div className="settings-overlay">
                     <SettingsComp
+                        userName={userName}
                         callerPage="game"
                         onClose={() => setShowSettings(false)}
                     />
                 </div>
             )}
+
+            {/* Sol üst Geri butonu */}
+            <button className="game-screen back-button" onClick={async () => {
+                await Sounds.clickAsync();
+                const gameMode = 1; // Klasik Kolay
+                saveScore(userName, score, gameMode);
+                navigate(PATHS.LOSE_SCREEN.path, {
+                    state: {
+                        userName,
+                        score,
+                        gameMode
+                    }
+                });
+            }}>
+                ✕ Pes Et
+            </button>
 
             {/* Sağ üst Settings ikonu */}
             <div className="settings-icon" onClick={async () => {
@@ -141,7 +149,7 @@ export const ClassicEasyGameScreen = ({ username }: ClassicEasyGameScreenProps) 
             <div className="game-header">
                 <h1>Yapay Görsel Bulma Oyunu</h1>
                 <div className="game-stats">
-                    <span>Oyuncu: {username}</span>
+                    <span>Oyuncu: {userName}</span>
                     <span>Can: {'❤️'.repeat(lives)}</span>
                     <span>Skor: {score}</span>
                 </div>
@@ -162,6 +170,8 @@ export const ClassicEasyGameScreen = ({ username }: ClassicEasyGameScreenProps) 
                         onSelect={(isCorrect) => handleCardSelect(image.id, isCorrect)}
                         showResult={showResult}
                         isSelected={selectedImageId === image.id}
+                        isLoading={imagesLoading}
+                        onImageLoad={handleImageLoad}
                     />
                 ))}
             </div>

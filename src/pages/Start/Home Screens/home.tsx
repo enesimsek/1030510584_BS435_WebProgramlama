@@ -4,11 +4,19 @@ import { Footer } from "../../../components/footer";
 import { useNavigate } from "react-router-dom";
 import { PATHS } from "../../../routes/paths";
 import { Sounds } from "../../../components/Sound Player/sound_player";
+import { useState, useEffect } from "react";
+import { getLeaderboard } from "../../../services/leaderboard_service";
 
 
 
 export const HomePage = () => {
     const navigate = useNavigate();
+    const [leaderboard, setLeaderboard] = useState<any[]>([]);
+
+    // localStorage'dan leaderboard'u yükle
+    useEffect(() => {
+        setLeaderboard(getLeaderboard());
+    }, []);
 
 
 
@@ -22,24 +30,6 @@ export const HomePage = () => {
         { name: "Hata Yok", id: 5 },
         { name: "Ben robot Değilim", id: 6 },
 
-    ];
-
-    //Örnek Skorlar 
-    const leaderboard = [
-        //Klasik Kolay
-        { rank: 1, name: "Enes", score: 980, mod: 1 },
-        { rank: 2, name: "Merve", score: 870, mod: 1 },
-        { rank: 3, name: "Ahmet", score: 760, mod: 1 },
-        { rank: 4, name: "Yaren", score: 640, mod: 1 },
-        { rank: 5, name: "Sena", score: 500, mod: 1 },
-        //Zamana Karşı
-        { rank: 1, name: "Enes", score: 980, mod: 4 },
-        { rank: 2, name: "Merve", score: 870, mod: 4 },
-        { rank: 3, name: "Ahmet", score: 760, mod: 4 },
-        //Hata Yok
-
-        { rank: 1, name: "Yaren", score: 640, mod: 5 },
-        { rank: 2, name: "Sena", score: 500, mod: 5 },
     ];
 
 

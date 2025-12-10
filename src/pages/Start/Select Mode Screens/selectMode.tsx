@@ -14,11 +14,11 @@ import squirrel_mod_select from "../../../assets/sincap-mod-ekranı.png";
 
 
 type SelectModePageProps = {
-    username: string;
-    setUserName: React.Dispatch<React.SetStateAction<string>>;
+    userName: string;
+    setuserName: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const SelectModePage = ({ username, setUserName }: SelectModePageProps) => {
+export const SelectModePage = ({ userName, setuserName }: SelectModePageProps) => {
     const navigate = useNavigate();
 
     const [selectedMode, setSelectedMode] = useState(1);
@@ -34,16 +34,21 @@ export const SelectModePage = ({ username, setUserName }: SelectModePageProps) =
     ];
 
     const descriptions: Record<number, string> = {
-        1: `Herkesin bildiği klasik moddur. Görselleri ayırt etmesi çok kolaydır. 10 turdan oluşur. 
-            Hata yaparsan puan kaybedersin. Daha yüksek puanlara ulaşmak için tüm turları doğru cevaplamaya çalış.`,
-        2: `Klasik Orta mod, daha zor görseller içerir. 15 turdan oluşur. 
-            Hata yaparsan puan kaybedersin. Daha yüksek puanlara ulaşmak için tüm turları doğru cevaplamaya çalış.`,
-        3: `Klasik Zor mod, bakalım insan gibi düşünebiliyor musun? 20 turdan oluşur. 
-            Hata yaparsan puan kaybedersin. Daha yüksek puanlara ulaşmak için tüm turları doğru cevaplamaya çalış.`,
+        1: `Klasik Kolay mod.3 yanlış yapma hakkına sahipsin.
+            Hata yaparsan puan kaybedersin. Daha yüksek puanlara ulaşmak için tüm turları doğru cevaplamaya çalış.Unutma 
+            yapay zeka tarafından üretilen görselleri seçmen gerekiyor!`,
+        2: `Klasik Orta mod. 1 yanlış yapma hakkına sahipsin.
+            Hata yaparsan puan kaybedersin. Daha yüksek puanlara ulaşmak için tüm turları doğru cevaplamaya çalış.
+            Unutma yapay zeka tarafından üretilen görselleri seçmen gerekiyor!`,
+        3: `Klasik Zor mod, bakalım insan gibi düşünebiliyor musun?Hata yapma lüksün yok!
+            Daha yüksek puanlara ulaşmak için tüm turları doğru cevaplamaya çalış.
+            Unutma yapay zeka tarafından üretilen görselleri seçmen gerekiyor!`,
         4: `Zamana karşı yarışırsın. Her saniye önemli! Doğru bildiğin sonuçlar için +2 saniye kazanır, yanlış bildiğin
-        her tur için -10 sn kaybedersin. Süren biterse kaybedersin... Dikatli ol!`,
-        5: `Bu modda tek bir hata sonun olur.Daha fazla puana ulaşmak için hata yapmadan cevapları doğru tahmin etmeye çalış. `,
-        6: `Sen robot musun? `
+        her tur için -10 sn kaybedersin. Süren biterse kaybedersin... Dikatli ol!
+        Unutma yapay zeka tarafından üretilen görselleri seçmen gerekiyor!`,
+        5: `Bu modda tek bir hata sonun olur.Daha fazla puana ulaşmak için hata yapmadan cevapları doğru tahmin etmeye çalış.
+        Unutma yapay zeka tarafından üretilen görselleri seçmen gerekiyor!`,
+        6: `Sen robot musun? Yapay zeka tarafından üretilen görselleri seçmen gerekiyor!`
     };
     const goPrevMode = () => {
         setSelectedMode((prev) => (prev === 1 ? mods.length : prev - 1));
@@ -136,10 +141,10 @@ export const SelectModePage = ({ username, setUserName }: SelectModePageProps) =
             <div className="play-area">
                 <input
                     type="text"
-                    className="username-input"
-                    value={username}
+                    className="userName-input"
+                    value={userName}
                     placeholder="Kullanıcı adı"
-                    onChange={(e) => setUserName(e.target.value)}
+                    onChange={(e) => setuserName(e.target.value)}
                 />
 
                 <button
@@ -147,7 +152,7 @@ export const SelectModePage = ({ username, setUserName }: SelectModePageProps) =
                     onClick={async () => {
                         await Sounds.clickAsync();
                         navigate(gamePaths[selectedMode], {
-                            state: { mode: selectedMode, username }
+                            state: { mode: selectedMode, userName }
                         });
                     }}
                 >

@@ -8,6 +8,7 @@ import { SettingsPage } from './pages/Settings Screens/settings_page'
 import { useEffect, useState } from 'react'
 import { Sounds } from './components/Sound Player/sound_player'
 import { ClassicEasyGameScreen } from './pages/Game Screens/classicEasyGameScreen'
+import { LoseScreen } from './pages/Game Screens/Lose Screen/loseScreen'
 
 function App() {
 
@@ -20,15 +21,16 @@ function App() {
     }
   }, []);
 
-  const [username, setUserName] = useState("Robot");
+  const [userName, setuserName] = useState("Robot");
 
   return (
     <div>
       <Routes>
         <Route path={PATHS.HOME.path} element={<HomePage />} />
-        <Route path={PATHS.SELECT_MODE.path} element={<SelectModePage username={username} setUserName={setUserName} />} />
-        <Route path={PATHS.CLASSIC_EASY.path} element={<ClassicEasyGameScreen username={username} />} />
-        <Route path={PATHS.SETTINGS.path} element={<SettingsPage />} />
+        <Route path={PATHS.SELECT_MODE.path} element={<SelectModePage userName={userName} setuserName={setuserName} />} />
+        <Route path={PATHS.CLASSIC_EASY.path} element={<ClassicEasyGameScreen userName={userName} />} />
+        <Route path={PATHS.SETTINGS.path} element={<SettingsPage userName={userName} setuserName={setuserName} />} />
+        <Route path={PATHS.LOSE_SCREEN.path} element={<LoseScreen />} />
       </Routes>
     </div>
   );

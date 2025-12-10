@@ -38,5 +38,9 @@ export const PATHS = {
     I_AM_NOT_A_ROBOT: {
         path: "/oyun-ben-robot-degilim",
         name: "Ben Robot Değilim",
+    },
+    LOSE_SCREEN: {
+        path: "/oyun-bitti",
+        name: "Oyun Bitti",
     }
 };

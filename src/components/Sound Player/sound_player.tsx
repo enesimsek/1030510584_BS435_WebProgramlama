@@ -2,6 +2,9 @@ import clickSound from "../../assets/sounds/click.mp3";
 import loseSounf from "../../assets/sounds/lose.mp3";
 import winSound from "../../assets/sounds/win.mp3";
 import bgSound from "../../assets/sounds/bg-loop.mp3";
+import hoverSound from "../../assets/sounds/hover.mp3";
+import wrongSound from "../../assets/sounds/wrong.mp3";
+import correctSound from "../../assets/sounds/correct.mp3";
 
 
 // Volume değerleri
@@ -12,6 +15,9 @@ let musicVolume = 0.5; // müzik sesi
 const clickAudio = new Audio(clickSound);
 const loseAudio = new Audio(loseSounf);
 const winAudio = new Audio(winSound);
+const hoverAudio = new Audio(hoverSound);
+const wrongAudio = new Audio(wrongSound);
+const correctAudio = new Audio(correctSound);
 
 
 // Background music özel obje
@@ -50,6 +56,15 @@ export const Sounds = {
 
     win: () => play(winAudio),
     winAsync: () => playAsync(winAudio),
+
+    hover: () => { play(hoverAudio); },
+    hoverAsync: () => playAsync(hoverAudio),
+
+    wrong: () => play(wrongAudio),
+    wrongAsync: () => playAsync(wrongAudio),
+
+    correct: () => play(correctAudio),
+    correctAsync: () => playAsync(correctAudio),
 
     // Müzik kontrolü
     bgStart: () => {

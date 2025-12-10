@@ -7,12 +7,14 @@ import { Sounds } from "../Sound Player/sound_player";
 
 
 type SettingsCompProps = {
+    userName: string;
+    setuserName?: (name: string) => void;
     callerPage: string;
     onClose?: () => void;
 };
 
 //callerPage "settings" veye "game" olabilir
-export const SettingsComp = ({ callerPage, onClose }: SettingsCompProps) => {
+export const SettingsComp = ({ userName, setuserName, callerPage, onClose }: SettingsCompProps) => {
 
     const navigate = useNavigate();
 
@@ -58,7 +60,14 @@ export const SettingsComp = ({ callerPage, onClose }: SettingsCompProps) => {
 
                 <div className="settings-section">
                     <label className="label"> TAKMA AD </label>
-                    <input className="input" type="text" placeholder="Player123" />
+                    <input
+                        className="input"
+                        type="text"
+                        placeholder="Kullanıcı adı"
+                        value={userName}
+                        onChange={(e) => setuserName?.(e.target.value)}
+                        disabled={callerPage === "game"}
+                    />
                 </div>
 
                 <div className="settings-section">

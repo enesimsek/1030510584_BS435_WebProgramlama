@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap');
+
 .classic-easy-game-screen {
     min-height: 100vh;
     background: linear-gradient(180deg, rgba(34, 13, 56, 1) 0%, rgba(13, 17, 23, 1) 24%, rgba(13, 17, 23, 1) 100%);
     padding: 20px;
     position: relative;
-    color: white;
+    color: #f1c40f;
+    font-family: "Coming Soon", cursive;
 }
 
 .settings-overlay {
@@ -26,7 +29,7 @@
     /* ← SAĞ ÜSTE ALIR */
 
     font-size: 42px;
-    color: #f7c324;
+    color: #f1c40f;
 
     cursor: pointer;
     z-index: 20;
@@ -37,12 +40,12 @@
 .settings-icon:hover {
     color: #ffdd54;
     transform: rotate(30deg) scale(1.15);
-    filter: drop-shadow(0 0 6px #f7c324);
+    filter: drop-shadow(0 0 6px #f1c40f);
 }
 
 .game-header {
     text-align: center;
-    color: white;
+    color: #f1c40f;
     margin-bottom: 30px;
     padding-top: 20px;
 }
@@ -60,9 +63,11 @@
 }
 
 .game-stats span {
-    background: rgba(255, 255, 255, 0.2);
+    background: transparent;
+    border: 2px solid #f1c40f;
     padding: 10px 20px;
-    border-radius: 20px;
+    border-radius: 8px;
+    color: #f1c40f;
 }
 
 .game-instruction {
@@ -101,6 +106,31 @@
         transform: translateY(0);
     }
 }
+
+.game-screen {
+    font-family: "Coming Soon", cursive;
+    position: absolute;
+    background: rgba(20, 12, 5, 0.7);
+    border: 2px solid #f1c40f;
+    color: #f1c40f;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    padding: 8px 14px;
+}
+
+.game-screen:hover {
+    background-color: #f1c40f;
+    color: #2e1e0b;
+    box-shadow: 0 0 12px #f1c40f;
+}
+
+.back-button {
+    top: 20px;
+    left: 20px;
+}
+
 
 .images-grid {
     display: grid;

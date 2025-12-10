@@ -247,7 +247,7 @@
 }
 
 /* Kullanıcı Adı Input */
-.username-input {
+.userName-input {
     width: 300px;
     height: 60px;
     font-family: "Coming Soon", cursive;
@@ -261,7 +261,7 @@
     transition: 0.3s ease;
 }
 
-.username-input:focus {
+.userName-input:focus {
     color: #f7c324;
     background: rgba(21, 10, 40, 0.7);
     box-shadow: 0 0 10px #f7c324;
