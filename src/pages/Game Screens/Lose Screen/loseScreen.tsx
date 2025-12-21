@@ -13,15 +13,23 @@ export const LoseScreen = () => {
     const location = useLocation();
     const { userName, score, gameMode } = location.state as LoseScreenProps;
 
+    const modeNames: Record<number, string> = {
+        1: 'Klasik Kolay',
+        2: 'Klasik Normal',
+        3: 'Klasik Zor',
+        4: 'Zamanlı',
+        5: 'Hatasız',
+        6: 'I Am Not A Robot',
+    };
+
     const handlePlayAgain = () => {
         // Oyun moduna göre ilgili sayfaya yönlendir
         const gamePaths: Record<number, string> = {
             1: PATHS.CLASSIC_EASY.path,
             2: PATHS.CLASSIC_NORMAL.path,
             3: PATHS.CLASSIC_HARD.path,
-            4: PATHS.TIME.path,
-            5: PATHS.NO_MISTAKE.path,
-            6: PATHS.I_AM_NOT_A_ROBOT.path,
+            4: PATHS.TIME_ATTACK.path,
+            5: PATHS.I_AM_NOT_A_ROBOT.path,
         };
 
         navigate(gamePaths[gameMode], {
@@ -29,8 +37,8 @@ export const LoseScreen = () => {
         });
     };
 
-    const handleGoHome = () => {
-        navigate(PATHS.HOME.path);
+    const handleModeSelect = () => {
+        navigate(PATHS.SELECT_MODE.path);
     };
 
     return (
@@ -38,6 +46,7 @@ export const LoseScreen = () => {
             <div className="lose-screen-content">
                 <h1 className="lose-title">KAYBETTIN! 💔</h1>
                 <div className="lose-info">
+                    <p className="game-mode">Mod: <span>{modeNames[gameMode] || 'Bilinmiyor'}</span></p>
                     <p className="player-name">Oyuncu: <span>{userName}</span></p>
                     <p className="player-score">Skorun: <span>{score}</span></p>
                 </div>
@@ -45,8 +54,8 @@ export const LoseScreen = () => {
                     <button className="btn-play-again" onClick={handlePlayAgain}>
                         🎮 Yeniden Oyna
                     </button>
-                    <button className="btn-go-home" onClick={handleGoHome}>
-                        🏠 Ana Sayfaya Dön
+                    <button className="btn-go-home" onClick={handleModeSelect}>
+                        🏠 Mod Seçim Sayfasına Dön
                     </button>
                 </div>
             </div>

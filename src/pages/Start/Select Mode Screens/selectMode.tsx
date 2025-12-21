@@ -7,7 +7,7 @@ import zaman_karsi from "../../../assets/mode-images/zaman-karsi.png";
 import hata_yok from "../../../assets/mode-images/hata-yok.png";
 import ben_robot_degilim from "../../../assets/mode-images/ben-robot-degilim.png";
 import { IoSettingsOutline } from "react-icons/io5";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { PATHS } from "../../../routes/paths";
 import { Sounds } from "../../../components/Sound Player/sound_player";
 import squirrel_mod_select from "../../../assets/sincap-mod-ekranı.png";
@@ -44,7 +44,7 @@ export const SelectModePage = ({ userName, setuserName }: SelectModePageProps) =
             Daha yüksek puanlara ulaşmak için tüm turları doğru cevaplamaya çalış.
             Unutma yapay zeka tarafından üretilen görselleri seçmen gerekiyor!`,
         4: `Zamana karşı yarışırsın. Her saniye önemli! Doğru bildiğin sonuçlar için +2 saniye kazanır, yanlış bildiğin
-        her tur için -10 sn kaybedersin. Süren biterse kaybedersin... Dikatli ol!
+        her tur için -5 sn kaybedersin. Süren biterse kaybedersin... Dikatli ol!
         Unutma yapay zeka tarafından üretilen görselleri seçmen gerekiyor!`,
         5: `Bu modda tek bir hata sonun olur.Daha fazla puana ulaşmak için hata yapmadan cevapları doğru tahmin etmeye çalış.
         Unutma yapay zeka tarafından üretilen görselleri seçmen gerekiyor!`,
@@ -62,9 +62,8 @@ export const SelectModePage = ({ userName, setuserName }: SelectModePageProps) =
         1: PATHS.CLASSIC_EASY.path,
         2: PATHS.CLASSIC_NORMAL.path,
         3: PATHS.CLASSIC_HARD.path,
-        4: PATHS.TIME.path,
-        5: PATHS.NO_MISTAKE.path,
-        6: PATHS.I_AM_NOT_A_ROBOT.path,
+        4: PATHS.TIME_ATTACK.path,
+        5: PATHS.I_AM_NOT_A_ROBOT.path,
     };
 
     return (

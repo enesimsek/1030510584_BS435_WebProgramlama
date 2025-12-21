@@ -26,14 +26,10 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    /* ← SAĞ ÜSTE ALIR */
-
     font-size: 42px;
     color: #f1c40f;
-
     cursor: pointer;
     z-index: 20;
-
     transition: 0.25s ease;
 }
 
@@ -70,43 +66,6 @@
     color: #f1c40f;
 }
 
-.game-instruction {
-    display: none;
-}
-
-.feedback {
-    text-align: center;
-    font-size: 1.3rem;
-    padding: 15px;
-    margin: 20px auto;
-    border-radius: 10px;
-    max-width: 600px;
-    font-weight: bold;
-    animation: slideIn 0.5s ease-out;
-}
-
-.feedback.correct {
-    background-color: #4caf50;
-    color: white;
-}
-
-.feedback.incorrect {
-    background-color: #f44336;
-    color: white;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .game-screen {
     font-family: "Coming Soon", cursive;
     position: absolute;
@@ -131,62 +90,26 @@
     left: 20px;
 }
 
-
 .images-grid {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     max-width: 1200px;
-    margin: 0 auto;
+    width: calc(100% - 40px);
     padding: 20px;
 }
 
-.game-over-screen {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-}
-
-.game-over-screen h1 {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-}
-
-.game-over-screen p {
-    font-size: 2rem;
-    margin-bottom: 30px;
-}
-
-.game-over-screen button {
-    padding: 15px 40px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: white;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: 3px solid white;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.game-over-screen button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-@media (max-width: 1024px) {
+@media (max-width:1024px) {
     .images-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width:768px) {
     .game-header h1 {
         font-size: 1.8rem;
     }
@@ -199,9 +122,5 @@
     .images-grid {
         grid-template-columns: 1fr;
         gap: 15px;
-    }
-
-    .game-instruction {
-        font-size: 1.1rem;
     }
 }

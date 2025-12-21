@@ -1,6 +1,6 @@
 import "./home.css";
-import { Leaderboard } from "../../../components/Start/leaderbord";
-import { Footer } from "../../../components/footer";
+import { Leaderboard } from "../../../components/Leader Board/leaderbord";
+import { Footer } from "../../../components/Footer/footer";
 import { useNavigate } from "react-router-dom";
 import { PATHS } from "../../../routes/paths";
 import { Sounds } from "../../../components/Sound Player/sound_player";
@@ -25,10 +25,8 @@ export const HomePage = () => {
         { name: "Klasik Kolay", id: 1 },
         { name: "Klasik Orta", id: 2 },
         { name: "Klasik Zor", id: 3 },
-
         { name: "Zamana Karşı", id: 4 },
-        { name: "Hata Yok", id: 5 },
-        { name: "Ben robot Değilim", id: 6 },
+        { name: "Ben robot Değilim", id: 5 },
 
     ];
 

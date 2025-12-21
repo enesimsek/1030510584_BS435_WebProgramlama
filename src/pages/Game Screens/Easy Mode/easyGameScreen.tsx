@@ -1,34 +1,33 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoSettingsOutline } from 'react-icons/io5';
-import { Sounds } from '../../components/Sound Player/sound_player';
-import { SettingsComp } from '../../components/Settings/settings_comp';
-import { ImageCard } from '../../components/ImageCard/ImageCard';
-import { getGameImages } from '../../services/getImage_service';
-import type { GameImage } from '../../services/getImage_service';
-import { saveScore } from '../../services/leaderboard_service';
-import { PATHS } from '../../routes/paths';
-import './classicEasyGameScreen.css';
+import { Sounds } from '../../../components/Sound Player/sound_player';
+import { SettingsComp } from '../../../components/Settings/settings_comp';
+import { ImageCard } from '../../../components/ImageCard/ImageCard';
+import { getGameImages } from '../../../services/getImage_service';
+import type { GameImage } from '../../../services/getImage_service';
+import { saveScore } from '../../../services/leaderboard_service';
+import { PATHS } from '../../../routes/paths';
+import './easyGameScreen.css';
 
-type ClassicEasyGameScreenProps = { userName: string; };
+type easyGameScreenProps = { userName: string; };
 
-export const ClassicEasyGameScreen = ({ userName }: ClassicEasyGameScreenProps) => {
+export const EasyGameScreen = ({ userName }: easyGameScreenProps) => {
     const navigate = useNavigate();
 
     const [images, setImages] = useState<GameImage[]>([]);
     const [lives, setLives] = useState(3);
     const [score, setScore] = useState(0);
-    const [gameOver, setGameOver] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
     const [showResult, setShowResult] = useState(false);
     const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
     const [imagesLoading, setImagesLoading] = useState(true);
-    const [loadedCount, setLoadedCount] = useState(0);
+    const [, setLoadedCount] = useState(0);
 
     // Yeni tur başlat
     const startNewRound = () => {
-        // 5 gerçek görsel + 1 AI görsel al ve karıştır
-        const newImages = getGameImages(5, 1);
+        // 2 gerçek görsel 1 ai görsel al ve karıştır
+        const newImages = getGameImages(2, 1);
         setImages(newImages);
         setShowResult(false);
         setSelectedImageId(null);
@@ -40,9 +39,8 @@ export const ClassicEasyGameScreen = ({ userName }: ClassicEasyGameScreenProps) 
     const handleImageLoad = () => {
         setLoadedCount(prev => {
             const newCount = prev + 1;
-            // 6 görsel yüklendiğinde (5 gerçek + 1 AI), tüm görselleri göster
-            if (newCount === 6) {
-                console.log('Tüm görseller yüklendi! Shimmer kapatılıyor...');
+            // 3 görsel yüklendiğinde (2 gerçek + 1 ai)tüm görselleri göster
+            if (newCount === 3) {
                 setImagesLoading(false);
             }
             return newCount;
@@ -51,7 +49,7 @@ export const ClassicEasyGameScreen = ({ userName }: ClassicEasyGameScreenProps) 
 
     // Kart seçimi
     const handleCardSelect = (imageId: string, isCorrect: boolean) => {
-        if (showResult || gameOver || showSettings) return;
+        if (showResult || showSettings) return;
 
         setSelectedImageId(imageId);
         setShowResult(true);
@@ -68,9 +66,12 @@ export const ClassicEasyGameScreen = ({ userName }: ClassicEasyGameScreenProps) 
             setLives(newLives);
 
             if (newLives <= 0) {
-                setTimeout(() => {
-                    setGameOver(true);
-                }, 1500);
+                // Skoru kaydet ve kaybetme sayfasına yönlendir
+                const gameMode = 1; // Klasik Kolay
+                saveScore(userName, score, gameMode);
+                navigate(PATHS.LOSE_SCREEN.path, {
+                    state: { userName, score, gameMode }
+                });
             } else {
                 setTimeout(() => {
                     startNewRound();
@@ -83,30 +84,7 @@ export const ClassicEasyGameScreen = ({ userName }: ClassicEasyGameScreenProps) 
         startNewRound();
     }, []);
 
-    // Oyun bitti ekranı
-    if (gameOver) {
-        // Skoru kaydet ve lose screen'e yönlendir
-        const gameMode = 1; // Klasik Kolay
-        saveScore(userName, score, gameMode);
 
-        setTimeout(() => {
-            navigate(PATHS.LOSE_SCREEN.path, {
-                state: {
-                    userName,
-                    score,
-                    gameMode
-                }
-            });
-        }, 1500);
-
-        return (
-            <div className="game-over-screen">
-                <h1>KAYBETTIN!</h1>
-                <p>Skorun: {score}</p>
-                <p>Yönlendiriliyorsunuz...</p>
-            </div>
-        );
-    }
 
     return (
         <div className="classic-easy-game-screen">
@@ -154,11 +132,6 @@ export const ClassicEasyGameScreen = ({ userName }: ClassicEasyGameScreenProps) 
                     <span>Skor: {score}</span>
                 </div>
             </div>
-
-            {/* Talimat */}
-            <p className="game-instruction">
-                Hangisi yapay zeka tarafından oluşturuldu? (1 doğru, 5 yanlış)
-            </p>
 
             {/* Görseller Grid */}
             <div className="images-grid">

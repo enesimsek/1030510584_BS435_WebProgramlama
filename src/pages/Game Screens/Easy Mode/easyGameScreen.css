@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap');
+
+.classic-easy-game-screen {
+    min-height: 100vh;
+    background: linear-gradient(180deg, rgba(34, 13, 56, 1) 0%, rgba(13, 17, 23, 1) 24%, rgba(13, 17, 23, 1) 100%);
+    padding: 20px;
+    position: relative;
+    color: #f1c40f;
+    font-family: "Coming Soon", cursive;
+}
+
+.settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.settings-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    /* ← SAĞ ÜSTE ALIR */
+
+    font-size: 42px;
+    color: #f1c40f;
+
+    cursor: pointer;
+    z-index: 20;
+
+    transition: 0.25s ease;
+}
+
+.settings-icon:hover {
+    color: #ffdd54;
+    transform: rotate(30deg) scale(1.15);
+    filter: drop-shadow(0 0 6px #f1c40f);
+}
+
+.game-header {
+    text-align: center;
+    color: #f1c40f;
+    margin-bottom: 30px;
+    padding-top: 20px;
+}
+
+.game-header h1 {
+    display: none;
+}
+
+.game-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.game-stats span {
+    background: transparent;
+    border: 2px solid #f1c40f;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: #f1c40f;
+}
+
+/* Removed unused instruction/feedback styles */
+
+.game-screen {
+    font-family: "Coming Soon", cursive;
+    position: absolute;
+    background: rgba(20, 12, 5, 0.7);
+    border: 2px solid #f1c40f;
+    color: #f1c40f;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    padding: 8px 14px;
+}
+
+.game-screen:hover {
+    background-color: #f1c40f;
+    color: #2e1e0b;
+    box-shadow: 0 0 12px #f1c40f;
+}
+
+.back-button {
+    top: 20px;
+    left: 20px;
+}
+
+
+.images-grid {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    width: calc(100% - 40px);
+    padding: 20px;
+}
+
+/* Removed unused game-over screen styles (handled elsewhere) */
+
+@media (max-width: 1024px) {
+    .images-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .game-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .game-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .images-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .game-instruction {
+        font-size: 1.1rem;
+    }
+}

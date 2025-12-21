@@ -27,13 +27,9 @@ export const PATHS = {
         path: "/oyun-klasik-zor",
         name: "Klasik Zor",
     },
-    TIME: {
+    TIME_ATTACK: {
         path: "/oyun-zamana-karsi",
         name: "Zamana Karşı",
-    },
-    NO_MISTAKE: {
-        path: "/oyun-hata-yok",
-        name: "Hata Yok",
     },
     I_AM_NOT_A_ROBOT: {
         path: "/oyun-ben-robot-degilim",

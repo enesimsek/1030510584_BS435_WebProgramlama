@@ -32,7 +32,7 @@ export const ImageCard = ({ imageUrl, isAI, onSelect, showResult, isSelected, is
         if (!showResult) return 'image-card';
 
         if (isAI) {
-            // AI görsel - yeşil parlasın
+            // ai görsel - yeşil parlasın
             return 'image-card correct-ai';
         } else if (isSelected) {
             // Yanlış seçim - kırmızı parlasın
