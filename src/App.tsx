@@ -18,9 +18,9 @@ function App() {
   useEffect(() => {
     try {
       Sounds.bgStart();   // Sayfa açılınca başlat
-      return () => Sounds.bgStop();   // Sayfadan çıkınca durdur
+      return () => Sounds.bgStop();
     } catch (error) {
-      console.log('Sound player not available');
+      console.log('Ses dosyası yüklenemedi veya oynatılamadı.', error);
     }
   }, []);
 

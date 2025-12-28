@@ -3,7 +3,7 @@ export const Footer = () => {
     return (
         <>
             <footer className="footer">
-                <p>© Enes Corp. Tüm hakları saklıdır.</p>
+                <p>© Enes Şimşek</p>
             </footer>
         </>
     )

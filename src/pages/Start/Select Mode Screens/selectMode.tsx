@@ -4,8 +4,6 @@ import klasik_kolay from "../../../assets/mode-images/klasik-kolay.png";
 import klasik_normal from "../../../assets/mode-images/klasik-normal.png";
 import klasik_zor from "../../../assets/mode-images/klasik-zor.png";
 import zaman_karsi from "../../../assets/mode-images/zaman-karsi.png";
-import hata_yok from "../../../assets/mode-images/hata-yok.png";
-import ben_robot_degilim from "../../../assets/mode-images/ben-robot-degilim.png";
 import { IoSettingsOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { PATHS } from "../../../routes/paths";
@@ -29,8 +27,6 @@ export const SelectModePage = ({ userName, setuserName }: SelectModePageProps) =
         { id: 2, name: "Klasik Normal", img: klasik_normal },
         { id: 3, name: "Klasik Zor", img: klasik_zor },
         { id: 4, name: "Zamana Karşı", img: zaman_karsi },
-        { id: 5, name: "Hata Yok", img: hata_yok },
-        { id: 6, name: "Ben Robot Değilim", img: ben_robot_degilim },
     ];
 
     const descriptions: Record<number, string> = {
@@ -46,9 +42,6 @@ export const SelectModePage = ({ userName, setuserName }: SelectModePageProps) =
         4: `Zamana karşı yarışırsın. Her saniye önemli! Doğru bildiğin sonuçlar için +2 saniye kazanır, yanlış bildiğin
         her tur için -5 sn kaybedersin. Süren biterse kaybedersin... Dikatli ol!
         Unutma yapay zeka tarafından üretilen görselleri seçmen gerekiyor!`,
-        5: `Bu modda tek bir hata sonun olur.Daha fazla puana ulaşmak için hata yapmadan cevapları doğru tahmin etmeye çalış.
-        Unutma yapay zeka tarafından üretilen görselleri seçmen gerekiyor!`,
-        6: `Sen robot musun? Yapay zeka tarafından üretilen görselleri seçmen gerekiyor!`
     };
     const goPrevMode = () => {
         setSelectedMode((prev) => (prev === 1 ? mods.length : prev - 1));
@@ -63,7 +56,6 @@ export const SelectModePage = ({ userName, setuserName }: SelectModePageProps) =
         2: PATHS.CLASSIC_NORMAL.path,
         3: PATHS.CLASSIC_HARD.path,
         4: PATHS.TIME_ATTACK.path,
-        5: PATHS.I_AM_NOT_A_ROBOT.path,
     };
 
     return (

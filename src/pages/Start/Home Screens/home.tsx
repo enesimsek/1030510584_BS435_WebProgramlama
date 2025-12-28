@@ -26,7 +26,6 @@ export const HomePage = () => {
         { name: "Klasik Orta", id: 2 },
         { name: "Klasik Zor", id: 3 },
         { name: "Zamana Karşı", id: 4 },
-        { name: "Ben robot Değilim", id: 5 },
 
     ];
 

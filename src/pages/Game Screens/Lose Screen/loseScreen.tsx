@@ -29,7 +29,6 @@ export const LoseScreen = () => {
             2: PATHS.CLASSIC_NORMAL.path,
             3: PATHS.CLASSIC_HARD.path,
             4: PATHS.TIME_ATTACK.path,
-            5: PATHS.I_AM_NOT_A_ROBOT.path,
         };
 
         navigate(gamePaths[gameMode], {
